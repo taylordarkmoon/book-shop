@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { FaSearch, FaStar } from 'react-icons/fa';
 import axios from 'axios';
 
-const API_BASE = 'http://localhost:8002/';
+const API_BASE = 'http://localhost:8002';
 
 const HomePage = ({ user, addToCart }) => {
   const [books, setBooks] = useState([]);
@@ -20,8 +20,8 @@ const HomePage = ({ user, addToCart }) => {
     try {
       setLoading(true);
       const [booksRes, newBooksRes] = await Promise.all([
-        axios.get(`${API_BASE}/catalog/recomend`),
-        axios.get(`${API_BASE}/catalog/new`)
+        axios.get(`${API_BASE}/books`),
+        axios.get(`${API_BASE}/books`)
       ]);
       
       setBooks(booksRes.data || []);

@@ -11,7 +11,7 @@ import {
 
 @Entity('users')
 export class UserEntity {
-  @PrimaryGeneratedColumn('uuid')
+  @PrimaryGeneratedColumn()
   id: string;
 
   @Column({ nullable: true })
@@ -23,8 +23,8 @@ export class UserEntity {
   @Column({ nullable: true })
   email: string;
 
-  @Column({nullable: true})
-  date_agreement: Date;
+  @Column({nullable: false})
+  hash_password: string;
 
   @CreateDateColumn()
   createdAt: Date;

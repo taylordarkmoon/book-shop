@@ -15,7 +15,7 @@ export class BooksEntity {
     age: number;
 
     @Column({nullable: false})
-    autor: number;
+    author: string;
 
     @Column({nullable: false})
     price: number;
@@ -28,6 +28,15 @@ export class BooksEntity {
 
     @Column({nullable: false})
     count: number;
+
+    @Column({nullable: false, type: "real"})
+    rating:number
+
+    @Column({nullable: false})
+    cover:string
+
+    @Column({nullable: false,default: false})
+    is_recommended: boolean
 
 }
 //book card many to many

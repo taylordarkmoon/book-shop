@@ -10,19 +10,21 @@ export class BookController {
     ){}
 
 
-    @Get('books')
+    @Get('')
     getListBooks(
         @Query('autor') autor: string,
-        @Query('age') age: string
+        @Query('age') age: string,
+        @Query('price') price: string,
+        @Query('title') title: string,
     ){
-        return this.bookServise.getBooksList()
+        return this.bookServise.getBooksList(age, autor, price, title)
     }
 
-    @Get('book/:bookid')
+    @Get('/:bookid')
     getListStreet(
         @Param('bookid') bookid: string,
     ){
-        return this.bookServise.getBook()
+        return this.bookServise.getBook(bookid)
     }
 
     //create admin
@@ -30,7 +32,7 @@ export class BookController {
     bokkCreate(
         @Param('bookid') bookid: string,
     ){
-        return this.bookServise.getBook()
+        return this.bookServise.getBook(bookid)
     }
 
 }

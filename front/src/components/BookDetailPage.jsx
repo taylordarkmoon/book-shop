@@ -3,7 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { FaStar, FaShoppingCart, FaArrowLeft } from 'react-icons/fa';
 import axios from 'axios';
 
-const API_BASE = 'http://localhost:8002/api';
+const API_BASE = 'http://localhost:8002/books';
 
 const BookDetailPage = ({ user, addToCart }) => {
   const { id } = useParams();
@@ -18,7 +18,7 @@ const BookDetailPage = ({ user, addToCart }) => {
   const fetchBook = async () => {
     try {
       setLoading(true);
-      const response = await axios.get(`${API_BASE}/api/catalog/${id}`);
+      const response = await axios.get(`${API_BASE}/${id}`);
       setBook(response.data);
     } catch (error) {
       console.error('Ошибка загрузки книги:', error);
@@ -31,9 +31,9 @@ const BookDetailPage = ({ user, addToCart }) => {
         rating: 4.9,
         cover: 'https://via.placeholder.com/300x400?text=Книга',
         description: 'Знаменитый роман Михаила Булгакова, в котором переплетаются сатира, философия и мистика. Действие разворачивается в Москве 1930-х годов, куда прибывает Воланд со своей свитой.',
-        year: 1967,
-        pages: 416,
-        publisher: 'АСТ'
+        age: 1967,
+        list_count: 416,
+        izdatek: 'АСТ'
       });
     } finally {
       setLoading(false);
@@ -72,20 +72,20 @@ const BookDetailPage = ({ user, addToCart }) => {
           
           <div className="rating">
             <FaStar className="star" /> {book.rating || '4.5'}
-            {book.year && <span className="year"> • {book.year} год</span>}
+            {book.age && <span className="year"> • {book.age} год</span>}
           </div>
           
           <div className="price">{book.price} ₽</div>
           
           <div className="description">
             <h3>Описание</h3>
-            <p>{book.description || 'Описание отсутствует'}</p>
+            <p>{book.descroption || 'Описание отсутствует'}</p>
           </div>
           
-          {book.pages && (
+          {book.list_count && (
             <div className="details">
-              <p><strong>Страниц:</strong> {book.pages}</p>
-              <p><strong>Издательство:</strong> {book.publisher}</p>
+              <p><strong>Страниц:</strong> {book.list_count}</p>
+              <p><strong>Издательство:</strong> {book.izdatek}</p>
             </div>
           )}
           

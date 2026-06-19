@@ -3,7 +3,7 @@ import { AppModule } from './app.module';
  import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 const corsOptions = {
-  origin: ['*','http://localhost:5173',],
+  origin: ['*','http://localhost:8080',],
   methods: 'GET,PUT,POST,DELETE,HEAD',
   preflightContinue: false,
   optionsSuccessStatus: 204,

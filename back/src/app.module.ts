@@ -34,8 +34,8 @@ import { BookModule } from './books/book.module';
   //  //  serveStaticOptions: { index: false },
   //   }),
 
-  BookModule
-    // UserModule,
+  BookModule,
+  UserModule
  
   ],
 })
