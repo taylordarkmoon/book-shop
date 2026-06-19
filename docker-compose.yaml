@@ -15,7 +15,7 @@ services:
   # Reac
   frontend:
     build:
-      context: ./services/front
+      context: ./front
       dockerfile: Dockerfile
     container_name: bookstore-front
     restart: unless-stopped
@@ -25,7 +25,7 @@ services:
       - REACT_APP_API_BACK=http://localhost:8002
       # - REACT_APP_API_GATEWAY=http://localhost:8080
     depends_on:
-      # - api-gateway
+      - api-gateway
       - back
     networks:
       - bookstore-network
@@ -33,7 +33,7 @@ services:
     # Reac
   front-admin:
     build:
-      context: ./services/admin-web
+      context: ./admin-web
       dockerfile: Dockerfile
     container_name: bookstore-front-admin
     restart: unless-stopped
@@ -43,24 +43,24 @@ services:
       - REACT_APP_API_BACK=http://localhost:8002
       # - REACT_APP_API_GATEWAY=http://localhost:8080
     depends_on:
-      # - api-gateway
+      - api-gateway
       - back
     networks:
       - bookstore-network
 
   # Nginx
-  # api-gateway:
-  #   image: nginx:alpine
-  #   container_name: bookstore-gateway
-  #   restart: unless-stopped
-  #   ports:
-  #     - "8080:8080"
-  #   volumes:
-  #     - ./gateway/nginx.conf:/etc/nginx/nginx.conf:ro
-  #   depends_on:
-  #     - back
-  #   networks:
-  #     - bookstore-network
+  api-gateway:
+    image: nginx:alpine
+    container_name: bookstore-gateway
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./gateway/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - back
+    networks:
+      - bookstore-network
 
   # back
   back:

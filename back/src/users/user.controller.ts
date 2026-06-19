@@ -1,12 +1,12 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { User } from './dto/users.dto';
 import { UserService } from './user.service';
-// import { ApiTags } from '@nestjs/swagger';
+import { ApiTags } from '@nestjs/swagger';
 import { JWTGuard } from 'src/jwt/guard.service';
 import { JWTPayload } from 'src/jwt/jwt.decorator';
 import { TokenModel } from './transformer';
 
-// @ApiTags('user')
+@ApiTags('user auth')
 @Controller('auth')
 export class UserController {
   constructor(private readonly userService: UserService) {}
