@@ -7,6 +7,7 @@ import { UserModule } from './users/user.module';
 // import { ServeStaticModule } from '@nestjs/serve-static';
 import path, { join } from 'node:path';
 import { BookModule } from './books/book.module';
+import { AdminModule } from './admin/admin.module';
 
 
 @Module({
@@ -35,7 +36,8 @@ import { BookModule } from './books/book.module';
   //   }),
 
   BookModule,
-  UserModule
+  UserModule,
+  AdminModule
  
   ],
 })

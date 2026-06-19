@@ -8,3 +8,6 @@ http://localhost:8080/
 
 # админка 
 http://localhost:8080/admin/
+
+# swagger documentation api
+http://localhost:8002/api#

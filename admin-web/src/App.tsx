@@ -87,7 +87,7 @@ function LoginPage({ onLoginSuccess }: { onLoginSuccess: (token: string) => void
     }
 
     try {
-      const response = await fetch('http://localhost:8002/auth/login', {
+      const response = await fetch('http://localhost:8002/admin/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ login, password }),
