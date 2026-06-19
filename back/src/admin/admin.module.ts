@@ -4,10 +4,12 @@ import { TypeOrmModule } from "@nestjs/typeorm";
 import { AdminService } from "./admin.service";
 import { AdminController } from "./admin.controller";
 import { JWTService } from "src/jwt/jwt.service";
+import { BooksEntity } from "src/books/dto/book.entity";
 
 @Module({
     imports: [TypeOrmModule.forFeature([
       AdminEntity,
+      BooksEntity
     ]), 
     // HttpModule
   ],

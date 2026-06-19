@@ -16,6 +16,8 @@ export class VeryifyCode {
 
 export class GetUserDto {
   id: string;
+  phone?: string;
+  name: string;
 
 }
 

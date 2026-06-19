@@ -4,7 +4,7 @@ import { UserService } from './user.service';
 import { ApiTags } from '@nestjs/swagger';
 import { JWTGuard } from 'src/jwt/guard.service';
 import { JWTPayload } from 'src/jwt/jwt.decorator';
-import { TokenModel } from './transformer';
+import { LoginUser, TokenModel } from './transformer';
 
 @ApiTags('user auth')
 @Controller('auth')
@@ -16,9 +16,9 @@ export class UserController {
     return this.userService.auth(username, password);
   }
 
-  // @Post('/login')
-  // login(@Body() { code }: VeryifyCode) {
-  //   return this.userService.verification(code);
-  // }
+  @Post('/login')
+  login(@Body() { phone, name , email, password }: LoginUser) {
+    return this.userService.loginUser(phone, name , email, password);
+  }
 
 }

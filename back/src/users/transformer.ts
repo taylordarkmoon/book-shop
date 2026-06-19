@@ -3,6 +3,8 @@ import { GetUserDto } from './dto/users.dto';
 
 export const transformUser = (user: UserEntity): GetUserDto => ({
   id: user.id,
+  phone: user.phone,
+  name: user.name
 
 });
 
@@ -20,4 +22,12 @@ interface UserAuthModel {
   phone: string;
   name: string;
   token: string;
+}
+
+export class LoginUser {
+  phone: string;
+  name: string;
+  email: string;
+  password: string
+
 }

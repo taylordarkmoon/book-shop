@@ -19,7 +19,9 @@ export class UserService {
     // @Inject(CACHE_MANAGER) private cacheManager: Cache,
     // private readonly smsService: SmsService,
     private readonly JWTservice: JWTService,
-  ) {}
+  ) {
+    this.createUser()
+  }
 
    async auth( username, password ) {
 
@@ -34,44 +36,28 @@ export class UserService {
     }
   }
 
-  // async verification(code) {
+  async loginUser(phone, name , email, password) {
 
+      const user: UserEntity = await this.userEntityRepository.save(
+        this.userEntityRepository.create({ phone, name , email, hash_password: password }), 
+      );
+      const token = await this.JWTservice.createAccessToken({
+        ...transformUser(user),
+        tokenCreationTime: new Date(),
+      });
+      return { user: transformUser(user), token };
+    }
+ 
 
-  //   if (!phone) {
-  //     throw new HttpException(
-  //       {
-  //         ststus: HttpStatus.NOT_FOUND,
-  //         error: 'Invalid code',
-  //       },
-  //       HttpStatus.NOT_FOUND,
-  //     );
-  //   }
-  //   if (phone) {
-  //     const checkUser = await this.userEntityRepository.findOne({
-  //       where: { phone },
-  //     });
-  //     if (checkUser) {
-  //       const token = await this.JWTservice.createAccessToken({
-  //         ...transformUser(checkUser),
-  //         tokenCreationTime: new Date(),
-  //       });
+  private async createUser(){
+    const user = await this.userEntityRepository.save(this.userEntityRepository.create({
+      name: 'vika',
+      phone: "345678",
+      email: "bsfhbesi@ijf.com",
+      hash_password: "heorjgbeirgjb"
 
-  //       return {
-  //          user: transformUser(checkUser),
-  //          token , 
-  //          status: checkUser.user_agreement_version == agreement.version?  AgreementStatus.userExistAgreementNoChange : AgreementStatus.userExistAgreementChange };
-  //     }
-  //     const user: UserEntity = await this.userEntityRepository.save(
-  //       this.userEntityRepository.create({ phone }), 
-  //     );
-  //     const token = await this.JWTservice.createAccessToken({
-  //       ...transformUser(user),
-  //       tokenCreationTime: new Date(),
-  //     });
-  //     return { user: transformUser(user), token ,  status : AgreementStatus.newUser };
-  //   }
-  // }
-
-
+     }));
+        return  user
+  }
 
 }

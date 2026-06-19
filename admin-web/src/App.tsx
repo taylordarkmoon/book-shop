@@ -204,7 +204,7 @@ function BookListPage({ token }: { token: string }) {
     };
 
     try {
-      const response = await fetch('http://localhost:8002/books', {
+      const response = await fetch('http://localhost:8002/admin/book/create', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
